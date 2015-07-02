@@ -107,3 +107,12 @@ var doublyLinkedList = function() {
 
   return list;
 };
+
+/*
+ * Doubly linked list Complexity: What is the time complexity of the above functions?
+ * addToTail: O(1)
+ * removeHead: O(1)
+ * contains: O(n)
+ * addToHead: O(1)
+ * removeTail: O(1)
+ */ 
