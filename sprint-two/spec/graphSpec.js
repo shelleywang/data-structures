@@ -33,13 +33,16 @@ describe('graph', function() {
     graph.addNode('penguins');
     graph.addEdge('penguins', 'puppies');
     expect(graph.hasEdge('penguins', 'puppies')).to.equal(true);
+    expect(graph.hasEdge('puppies', 'penguins')).to.equal(true);
     expect(graph.hasEdge('penguins', 'kittens')).to.equal(false);
+    expect(graph.hasEdge('kittens', 'penguins')).to.equal(false);
   });
 
   it('should remove edges between nodes', function() {
     graph.addNode('apples');
     graph.addNode('satsumas');
     graph.addEdge('satsumas', 'apples');
+    expect(graph.hasEdge('apples', 'satsumas')).to.equal(true);
     graph.removeEdge('satsumas','apples');
     expect(graph.hasEdge('apples', 'satsumas')).to.equal(false);
   });
