@@ -41,4 +41,36 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
+  /*
+  * EXTRA CREDIT: added parent links to tree
+  */
+    it('should correctly identify parents', function(){
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.children[0].addChild(7);
+    tree.children[1].addChild(8);
+    expect(tree.children[0].children[0].parent.value).to.equal(5);
+    expect(tree.children[1].children[0].parent.value).to.equal(6);
+  });
+
+  it('should return null as a parent when there is parent node', function(){
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.children[0].addChild(7);
+    expect(tree.parent).to.equal(null);
+  });
+
+  it('should be able to remove parent node from a child', function(){
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.children[0].addChild(7);
+    tree.children[1].addChild(8);
+    tree.children[0].removeFromParent();
+    expect(tree.children[0].value).to.equal(6);
+    tree.children[0].removeFromParent();
+    expect(tree.children.toString()).to.equal([].toString());
+  });
+
+
+
 });
