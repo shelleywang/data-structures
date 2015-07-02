@@ -57,53 +57,53 @@ var Node = function(value){
 // EXTRA CREDIT: doubly linked list 
 
 var doublyLinkedList = function() {
-  var newlist = Object.create(LinkedList);
+  var list = {};
+  list.head = null;
+  list.tail = null;
 
-  newlist.addToHead = function(value) {
-    debugger;
+  list.addToHead = function(value) {
     var newNode = Node(value);
-    newNode.next = newlist.head;
-    if(newlist.head !== null)
-      newlist.head.previous = newNode;
-    if (newlist.tail === null) {
-      newlist.tail = newNode;
+    newNode.next = list.head;
+    if(list.head !== null)
+      list.head.previous = newNode;
+    if (list.tail === null) {
+      list.tail = newNode;
     }
-    newlist.head=newNode;
+    list.head=newNode;
   };
 
-  newlist.removeTail = function() {
-    if (newlist.tail === null){
+  list.removeTail = function() {
+    if (list.tail === null){
       return null;
     } else {
-      var retNode = newlist.tail;
-      newlist.tail = newlist.tail.previous;
-      newlist.tail.next = null;
+      var retNode = list.tail;
+      list.tail = list.tail.previous;
+      list.tail.next = null;
     }
     return retNode.value;
   };
 
-  newlist.addToTail = function(value){
+  list.addToTail = function(value){
     var aNode = Node(value);
-    aNode.previous = newlist.tail;
-    if (newlist.tail !== null) {
-      newlist.tail.next = aNode;
-    } else if(newlist.head === null){
-      newlist.head = newlist.tail = aNode;
+    aNode.previous = list.tail;
+    if (list.tail !== null) {
+      list.tail.next = aNode;
+    } else if(list.head === null){
+      list.head = list.tail = aNode;
     }
-    newlist.tail = aNode;
+    list.tail = aNode;
   };
 
-  newlist.removeHead = function(value){
-    if (newlist.head === null){
+  list.removeHead = function(value){
+    if (list.head === null){
         return null;
     } else {
-      var retNode = newlist.head;
-      newlist.head = newlist.head.next;
-      newlist.head.previous = null;
+      var retNode = list.head;
+      list.head = list.head.next;
+      list.head.previous = null;
       return retNode.value;
     }
   };
 
-  return newlist;
+  return list;
 };
-
