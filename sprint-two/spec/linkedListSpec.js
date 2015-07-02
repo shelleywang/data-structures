@@ -77,6 +77,7 @@ describe('linkedList', function() {
    */
   var dList = doublyLinkedList();
   it('doubly-linked-list should be able to add to head', function(){
+
     dList.addToHead(4);
     expect(dList.head.value).to.equal(4);
     dList.addToHead(5);
