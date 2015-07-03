@@ -41,8 +41,34 @@ describe('hashTable', function() {
     window.getIndexBelowMaxForKey = oldHashFunction;
   });
 
+  it('should handle removing keys with the same hash', function(){
+    var v1 = "val1";
+    var v2 = "val2";
+    var oldHashFunction = window.getIndexBelowMaxForKey;
+    window.getIndexBelowMaxForKey = function() { return 0; };
+    hashTable.insert(v1, v1);
+    hashTable.insert(v2, v2);
+    hashTable.remove(v2);
+    expect(hashTable.retrieve(v1)).to.equal(v1);
+    expect(hashTable.retrieve(v2)).to.equal(null);
+    expect(hashTable.retrieve(v1)).to.equal(v1);
+    hashTable.remove(v1);
+    expect(hashTable.retrieve(v1)).to.equal(null);
+    window.getIndexBelowMaxForKey = oldHashFunction;
+  });
+
+
   // (Extra credit! Remove the extra "x" when you want the following tests to run)
-  xit('should double in size when needed', function() {
+  it('numNodes should return correct amount of items in hash table', function(){
+    hashTable.insert('Bob', 'Barker');
+    hashTable.insert('John', 'Smith');
+    hashTable.insert('key', 'value');
+    expect(hashTable._numNodes).to.equal(3);
+    hashTable.remove('key');
+    expect(hashTable._numNodes).to.equal(2);
+  });
+
+  it('should double in size when needed', function() {
     _.each(people, function(person) {
       var firstName = person[0], lastName = person[1];
       hashTable.insert(firstName,lastName);
@@ -50,7 +76,7 @@ describe('hashTable', function() {
     expect(hashTable._limit).to.equal(16);
   });
 
-  xit('should halve in size when needed', function() {
+  it('should halve in size when needed', function() {
     _.each(people, function(person) {
       var firstName = person[0], lastName = person[1];
       hashTable.insert(firstName,lastName);
