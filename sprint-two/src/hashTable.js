@@ -21,7 +21,7 @@ HashTable.prototype.insert = function(k, v){
   }
   if (!this._currentlyHashing) {
   	this.rehash();
-	}
+  }
 };
 
 HashTable.prototype.retrieve = function(k){
@@ -79,7 +79,6 @@ HashTable.prototype.rehash = function(){
 		newSize = this._limit / 2;
 	}
 	if (newSize > 0) {
-		console.log(newSize);
 		var tempStorage = this._storage;
 		this._storage = LimitedArray(newSize);
 		this._limit = newSize;
@@ -88,7 +87,6 @@ HashTable.prototype.rehash = function(){
 		tempStorage.each(function(item, key, collection) {
 			if(item !== undefined){
 				var tempNode = item;
-				console.log(item);
 				while (tempNode) {
 					tempArray.push([tempNode.key, tempNode.value]);
 					tempNode = tempNode.next;
@@ -114,6 +112,8 @@ var hashNode = function(key, value){
 
   return node;
 }
+
+
 
 /*
  * Complexity: What is the time complexity of the above functions?
