@@ -33,4 +33,52 @@ describe('set', function() {
     expect(set.contains("Mel Gibson")).to.equal(false);
   });
 
+  //Extra Credit Tests
+  xit('should be able to add numbers', function(){
+    set.add(5);
+    set.add(4);
+    set.add(7);
+    expect(set.contains(5)).to.equal(true);
+    expect(set.contains(6)).to.equal(false);
+    expect(set.contains(4)).to.equal(true);
+    expect(set.contains(7)).to.equal(true);
+  });
+
+  xit('should be able to add objects', function(){
+    var obj1 = {name:'shelley'};
+    var obj2 = {name:'patrick'};
+    set.add(obj1);
+    expect(set.contains(obj1)).to.equal(true);
+    expect(set.contains(obj2)).to.equal(false);
+    set.add(obj2);
+    expect(set.contains(obj2)).to.equal(true);    
+    set.remove(obj1);
+    expect(set.contains(obj1)).to.equal(false);
+  }); 
+
+  xit('should not contain duplicate numbers', function(){
+    set.add(5);
+    set.add(5);
+    set.add(5);
+    set.add(7);
+    set.remove(5);
+    set.add('5');
+    expect(set.contains(5)).to.equal(false);
+    expect(set.contains('5')).to.equal(true);
+    expect(set.contains(7)).to.equal(true);
+  }); 
+
+  xit('should not contain duplicate objects', function(){
+    var obj1 = {name:'shelley'};
+    var obj2 = {name:'patrick'};
+    set.add(obj1);
+    set.add(obj1);
+    set.add(obj1);
+    set.add(obj2);
+    set.remove(obj1);
+    expect(set.contains(obj1)).to.equal(false);
+    expect(set.contains(obj2)).to.equal(true);
+  }); 
+
+
 });
