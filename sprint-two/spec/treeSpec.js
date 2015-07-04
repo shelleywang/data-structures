@@ -7,7 +7,7 @@ describe('tree', function() {
 
   it('should have methods named "addChild" and "contains", and a property named "value"', function() {
     expect(tree.addChild).to.be.a("function");
-    expect(tree.contains).to.be.a("function");
+    expect(tree.contains).to.be.a("function");  
     expect(tree.hasOwnProperty("value")).to.equal(true);
   });
 
@@ -41,10 +41,7 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
-  /*
-  * EXTRA CREDIT: added parent links to tree
-  */
-    it('should correctly identify parents', function(){
+  it('should correctly identify parents', function(){
     tree.addChild(5);
     tree.addChild(6);
     tree.children[0].addChild(7);
@@ -71,6 +68,22 @@ describe('tree', function() {
     expect(tree.children.toString()).to.equal([].toString());
   });
 
-
+  it('should execute a callback on every value in a tree using "depthFirstLog"', function(){
+    var array = [];
+    var func = function(value){ array.push(value); };
+    tree.addChild(3);
+    tree.addChild(7);
+    tree.children[0].addChild(8);
+    tree.children[1].addChild(9);
+    tree.children[1].addChild(3);
+    tree.children[0].addChild(5);
+    tree.children[0].children[0].addChild(1);
+    tree.children[1].children[1].addChild(5);
+    tree.children[0].children[1].addChild(2);
+    tree.children[1].children[0].addChild(7);
+    tree.traverse(func);
+    console.log(array);
+    expect(array).to.eql([3, 8, 1, 5, 2, 7, 9, 7, 3, 5]);
+  });
 
 });
