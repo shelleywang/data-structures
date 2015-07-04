@@ -31,10 +31,51 @@ describe('binarySearchTree', function() {
   it('should execute a callback on every value in a tree using "depthFirstLog"', function(){
     var array = [];
     var func = function(value){ array.push(value); };
-    binarySearchTree.insert(2);
     binarySearchTree.insert(3);
+    binarySearchTree.insert(7);
+    binarySearchTree.insert(1);
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(4);
+    binarySearchTree.insert(6);
+    binarySearchTree.insert(8);
     binarySearchTree.depthFirstLog(func);
     console.log(array);
-    expect(array).to.eql([5,2,3]);
+    expect(array).to.eql([5,3,1,2,4,7,6,8]);
   });
+
+  //Extra Credit Tests
+
+  it('should work with strings', function(){
+    var newTree = BinarySearchTree('c')
+    var array = [];
+    var func = function(value){ array.push(value); };
+    newTree.insert('a');
+    newTree.insert('b');
+    newTree.insert('d');
+    expect(newTree.right.value).to.equal('d');
+    expect(newTree.left.value).to.equal('a');
+    expect(newTree.left.right.value).to.equal('b');
+    expect(newTree.contains('b')).to.equal(true);
+    newTree.depthFirstLog(func);
+    expect(array).to.eql(['c', 'a', 'b', 'd']);
+  });
+
+  it('should execute a callback on every value in a tree using "breadthFirstLog"', function(){
+    var array = [];
+    var func = function(value){ array.push(value); };
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(7);
+    binarySearchTree.insert(1);
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(4);
+    binarySearchTree.insert(6);
+    binarySearchTree.insert(8);
+    binarySearchTree.breadthFirstLog(func);
+    console.log(array);
+    expect(array).to.eql([5,3,7,1,4,6,8,2]);
+  });
+
+
+
+
 });
