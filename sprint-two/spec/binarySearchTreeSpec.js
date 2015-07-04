@@ -43,8 +43,6 @@ describe('binarySearchTree', function() {
     expect(array).to.eql([5,3,1,2,4,7,6,8]);
   });
 
-  //Extra Credit Tests
-
   it('should work with strings', function(){
     var newTree = BinarySearchTree('c')
     var array = [];
@@ -71,11 +69,18 @@ describe('binarySearchTree', function() {
     binarySearchTree.insert(6);
     binarySearchTree.insert(8);
     binarySearchTree.breadthFirstLog(func);
-    console.log(array);
     expect(array).to.eql([5,3,7,1,4,6,8,2]);
   });
 
-
-
+  xit('should correctly store maximum depth in a property', function() {
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(7);
+    binarySearchTree.insert(1);
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(4);
+    binarySearchTree.insert(6);
+    binarySearchTree.insert(8);
+    expect(binarySearchTree.maxDepth).to.equal(3);
+  });
 
 });
